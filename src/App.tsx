@@ -10,7 +10,9 @@ function App() {
     { key: "status", header: "Status" },
   ];
 
-  return <Table data={files} columns={columns} />;
+  return (
+    <Table data={files} columns={columns} keyExtractor={(file) => file.path} />
+  );
 }
 
 export default App;
