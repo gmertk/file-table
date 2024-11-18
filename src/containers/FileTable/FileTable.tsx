@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 import styled from "styled-components";
 import { Column, Table } from "../../components/Table/Table";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
+import { IconButton } from "../../components/IconButton/IconButton";
+import { ArrowDownTrayIcon } from "@heroicons/react/16/solid";
 
 export type FileStatus = "available" | "scheduled";
 
@@ -73,13 +75,14 @@ export const FileTable = ({ files }: FileTableProps) => {
               : "Select all available files"
           }
         />
-        <button
+        <IconButton
+          icon={<ArrowDownTrayIcon aria-hidden="true" />}
           disabled={selectedFiles.size === 0}
           onClick={handleDownload}
           aria-label={`Download ${selectedFiles.size} selected files`}
         >
           Download Selected
-        </button>
+        </IconButton>
       </TableControls>
 
       <Table

@@ -6,4 +6,8 @@ export const colors = {
     rowSelectedHover: "#d5dae0",
     border: "#dee2e6",
   },
+  interactive: {
+    hover: "rgba(0, 0, 0, 0.05)",
+    disabled: "rgba(0, 0, 0, 0.6)",
+  },
 } as const;
