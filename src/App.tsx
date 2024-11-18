@@ -1,6 +1,7 @@
 import { files } from "./data/files";
 
 import { Table } from "./components/Table/Table";
+import { useState } from "react";
 
 function App() {
   const columns = [
@@ -10,8 +11,17 @@ function App() {
     { key: "status", header: "Status" },
   ];
 
+  const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());
+
   return (
-    <Table data={files} columns={columns} keyExtractor={(file) => file.path} />
+    <Table
+      data={files}
+      columns={columns}
+      keyExtractor={(file) => file.path}
+      selectedRows={selectedFiles}
+      onSelectionChange={setSelectedFiles}
+      isRowSelectable={(file) => file.status === "available"}
+    />
   );
 }
 
