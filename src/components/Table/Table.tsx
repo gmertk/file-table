@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../theme/colors";
+import { Checkbox } from "../Checkbox/Checkbox";
 
 const { tableColors } = colors;
 export type Column<T> = {
@@ -81,8 +82,7 @@ export function Table<T>({
             >
               {onSelectionChange && (
                 <CheckboxCell onClick={(e) => e.stopPropagation()}>
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={selectedRows.has(key)}
                     disabled={!isSelectable}
                     onChange={() => handleSelectRow(item)}

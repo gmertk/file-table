@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import styled from "styled-components";
 import { Column, Table } from "../../components/Table/Table";
+import { Checkbox } from "../../components/Checkbox/Checkbox";
 
 export type FileStatus = "available" | "scheduled";
 
@@ -55,16 +56,22 @@ export const FileTable = ({ files }: FileTableProps) => {
   return (
     <div>
       <TableControls>
-        <input
-          type="checkbox"
+        <Checkbox
           checked={getSelectAllCheckboxState() === true}
+          indeterminate={getSelectAllCheckboxState() === "indeterminate"}
           onChange={handleSelectAll}
-          ref={(input) => {
-            if (input) {
-              input.indeterminate =
-                getSelectAllCheckboxState() === "indeterminate";
-            }
-          }}
+          label={
+            selectedFiles.size === 0
+              ? "None Selected"
+              : `Selected ${selectedFiles.size}`
+          }
+          aria-label={
+            selectedFiles.size === 0
+              ? "Select all available files"
+              : selectedFiles.size === availableFiles.length
+              ? "Deselect all files"
+              : "Select all available files"
+          }
         />
         <button
           disabled={selectedFiles.size === 0}
