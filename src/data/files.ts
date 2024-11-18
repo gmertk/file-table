@@ -1,11 +1,4 @@
-export type FileStatus = "available" | "scheduled";
-
-export type FileData = {
-  name: string;
-  device: string;
-  path: string;
-  status: FileStatus;
-};
+import { FileData } from "../containers/FileTable/FileTable";
 
 export const files: FileData[] = [
   {

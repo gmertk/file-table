@@ -4,6 +4,8 @@ import { Column, Table } from "../../components/Table/Table";
 import { Checkbox } from "../../components/Checkbox/Checkbox";
 import { IconButton } from "../../components/IconButton/IconButton";
 import { ArrowDownTrayIcon } from "@heroicons/react/16/solid";
+import { StatusIndicator } from "../../components/StatusIndicator/StatusIndicator";
+import { capitalize } from "../../utils/capitalize";
 
 export type FileStatus = "available" | "scheduled";
 
@@ -52,7 +54,20 @@ export const FileTable = ({ files }: FileTableProps) => {
     { key: "name", header: "Name" },
     { key: "device", header: "Device" },
     { key: "path", header: "Path" },
-    { key: "status", header: "Status" },
+    {
+      key: "status",
+      header: "Status",
+      render: (file) => {
+        const status = capitalize(file.status);
+        return (
+          <StatusIndicator
+            status={file.status === "available" ? "success" : "none"}
+          >
+            {status}
+          </StatusIndicator>
+        );
+      },
+    },
   ];
 
   return (
