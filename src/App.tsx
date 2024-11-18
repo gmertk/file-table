@@ -1,28 +1,8 @@
 import { files } from "./data/files";
-
-import { Table } from "./components/Table/Table";
-import { useState } from "react";
+import { FileTable } from "./containers/FileTable/FileTable";
 
 function App() {
-  const columns = [
-    { key: "name", header: "Name" },
-    { key: "device", header: "Device" },
-    { key: "path", header: "Path" },
-    { key: "status", header: "Status" },
-  ];
-
-  const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());
-
-  return (
-    <Table
-      data={files}
-      columns={columns}
-      keyExtractor={(file) => file.path}
-      selectedRows={selectedFiles}
-      onSelectionChange={setSelectedFiles}
-      isRowSelectable={(file) => file.status === "available"}
-    />
-  );
+  return <FileTable files={files} />;
 }
 
 export default App;
